@@ -2,8 +2,7 @@ import React from 'react';
 import {TextInput, TextStyle, View, ViewStyle} from 'react-native';
 import styles from './styles';
 import {colorThemes} from '../../../themes/colors';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import {scale} from 'react-native-size-matters';
+import {SearchingIcon} from '../../../utilities/iconPaths';
 
 type Props = {
   onChangeText: any;
@@ -27,13 +26,13 @@ const AppInput = ({
 }: Props) => {
   return (
     <View style={[styles.inputView, style]}>
-      <AntDesign name="search1" size={scale(15)} />
+      <SearchingIcon />
       <TextInput
         value={value}
         autoFocus={autoFocus}
         keyboardType={keyboardType}
         placeholder={placeholder}
-        placeholderTextColor={colorThemes.black40}
+        placeholderTextColor={colorThemes.placeHolderBlueTextColor}
         multiline={multiline}
         onChangeText={e => onChangeText(e)}
         style={[styles.textField, inputStyle]}

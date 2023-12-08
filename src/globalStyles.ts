@@ -12,21 +12,23 @@ export default StyleSheet.create({
     height: scale(60),
     borderTopRightRadius: scale(30),
     borderTopLeftRadius: scale(30),
+    position: 'absolute',
+    backgroundColor: 'transparent',
   },
   tabItem: {
     alignItems: 'center',
+    backgroundColor: 'transparent',
+    width: '100%',
   },
-  plusIcon: {
-    top: -scale(25),
-    backgroundColor: colorThemes.pureRed,
-    width: scale(60),
-    height: scale(60),
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: scale(30),
-    elevation: 10,
-  },
+
   homeIconStyle: {
     marginBottom: 10,
+    backgroundColor: 'transparent',
+  },
+  curveBackground: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
 });

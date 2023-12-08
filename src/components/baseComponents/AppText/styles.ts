@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
   textStyle: {
     color: colorThemes.black1,
     fontSize: sizeValues.fontNormal,
+    includeFontPadding: false,
   },
 });
 

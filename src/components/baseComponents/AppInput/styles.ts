@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
     padding: scale(10),
   },
   inputView: {
+    paddingLeft: scale(28),
     height: scale(45),
-    borderWidth: 1,
     padding: scale(10),
     borderColor: colorThemes.black40,
     backgroundColor: colorThemes.white,
