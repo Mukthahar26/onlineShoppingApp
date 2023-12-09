@@ -6,11 +6,13 @@ import sizeValues from '../../../themes/sizeValues';
 export default StyleSheet.create({
   container: {
     height: scale(60),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
     paddingRight: sizeValues.size16,
     paddingLeft: sizeValues.size16,
+  },
+  subContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   topContainer: {
     backgroundColor: colorThemes.blue,
@@ -24,5 +26,10 @@ export default StyleSheet.create({
   nameLabel: {
     color: colorThemes.white,
     fontSize: scale(22),
+  },
+  headerName: {
+    fontSize: sizeValues.fontLarge,
+    fontWeight: '300',
+    marginLeft: scale(10),
   },
 });

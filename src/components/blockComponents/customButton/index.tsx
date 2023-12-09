@@ -10,11 +10,19 @@ type Props = {
   backGroundColor: string;
   labelColor: string;
   style?: ViewStyle;
+  onPress: () => void;
 };
 
-const CustomButton = ({label, backGroundColor, labelColor, style}: Props) => {
+const CustomButton = ({
+  label,
+  backGroundColor,
+  labelColor,
+  onPress,
+  style,
+}: Props) => {
   return (
     <AppButton
+      onPress={onPress}
       style={
         [styles.button, {backgroundColor: backGroundColor}, style] as ViewStyle
       }>

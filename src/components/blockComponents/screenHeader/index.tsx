@@ -7,12 +7,16 @@ import {useNavigation} from '@react-navigation/native';
 import AppButton from '../../baseComponents/AppButton';
 import {BagBlackIcon, GoBackIcon} from '../../../utilities/iconPaths';
 import IconWithBadge from '../iconWithBadge';
+import {screenNames} from '../../../constants/constants';
+import {RootStackParams} from '../../../navigators/rootNavigator';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type PropsType = {
   headerName?: string;
   isBackRequired?: boolean;
   isCartIconRequired?: boolean;
   headerStyle: ViewStyle;
+  badgeCount: number;
 };
 
 const ScreenHeader = ({
@@ -20,26 +24,39 @@ const ScreenHeader = ({
   isBackRequired,
   isCartIconRequired,
   headerStyle,
+  badgeCount,
 }: PropsType) => {
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParams>>();
 
   const goBack = () => {
     navigation.goBack();
   };
+  const navigateToCart = () => {
+    navigation.navigate(screenNames.SHOPPINGCART);
+  };
 
   return (
     <View style={[styles.container, headerStyle]}>
-      {isBackRequired && (
-        <AppButton onPress={goBack}>
-          <GoBackIcon />
-        </AppButton>
-      )}
-      <AppText>{headerName}</AppText>
-      {isCartIconRequired ? (
-        <IconWithBadge Icon={BagBlackIcon} badgeValue="3" />
-      ) : (
-        <View />
-      )}
+      <View
+        style={[
+          styles.subContainer,
+          isCartIconRequired && {justifyContent: 'space-between'},
+        ]}>
+        {isBackRequired && (
+          <AppButton onPress={goBack}>
+            <GoBackIcon />
+          </AppButton>
+        )}
+        <AppText style={styles.headerName}>{headerName}</AppText>
+        {isCartIconRequired ? (
+          <AppButton onPress={navigateToCart}>
+            <IconWithBadge Icon={BagBlackIcon} badgeValue={badgeCount} />
+          </AppButton>
+        ) : (
+          <View />
+        )}
+      </View>
     </View>
   );
 };

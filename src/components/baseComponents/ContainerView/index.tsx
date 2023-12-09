@@ -30,6 +30,7 @@ type props = {
   loading?: boolean;
   isCartIconRequired: boolean;
   headerStyle?: ViewStyle;
+  badgeCount: number;
 };
 const ContainerView = ({
   children,
@@ -43,6 +44,7 @@ const ContainerView = ({
   loading,
   isCartIconRequired,
   headerStyle,
+  badgeCount,
 }: props) => {
   const navigation = useNavigation<any>();
 
@@ -58,7 +60,8 @@ const ContainerView = ({
         <>
           {isHeaderRequired && navigation.canGoBack() && (
             <ScreenHeader
-              headerStyle={headerStyle}
+              badgeCount={badgeCount}
+              headerStyle={headerStyle as ViewStyle}
               isBackRequired={isBackRequired}
               headerName={headerName}
               isCartIconRequired={isCartIconRequired}
@@ -72,6 +75,7 @@ const ContainerView = ({
                 <View
                   style={[
                     {paddingBottom: isIgnoreBottomBar ? scale(80) : scale(10)},
+                    styles.container,
                     containerStyle,
                   ]}>
                   {children}
@@ -103,6 +107,7 @@ ContainerView.defaultProps = {
   isIgnoreBottomBar: false,
   loading: false,
   isCartIconRequired: true,
+  badgeCount: 0,
 };
 
 export default ContainerView;

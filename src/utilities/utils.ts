@@ -1,4 +1,5 @@
 import {Dimensions, ToastAndroid} from 'react-native';
+import Toast from 'react-native-simple-toast';
 
 const {width, height} = Dimensions.get('window');
 
@@ -29,7 +30,7 @@ export const getBase64WithUri = async (uri: string) => {
 };
 
 export const toastMessage = (text: string) =>
-  ToastAndroid.show(text, ToastAndroid.SHORT);
+  Toast.showWithGravity(text, Toast.LONG, Toast.BOTTOM);
 
 export const isFieldEmpty = (text: string | undefined) =>
   text && text.trim() ? text : false;

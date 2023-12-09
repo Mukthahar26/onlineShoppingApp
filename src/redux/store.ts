@@ -1,10 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
 import productListSlicer from './slicers/productSlicer';
+import shoppingCartSlicer from './slicers/shoppingCartSlicer';
 // ...
 
 export const store = configureStore({
   reducer: {
     productList: productListSlicer,
+    shoppingCartList: shoppingCartSlicer,
   },
 });
 

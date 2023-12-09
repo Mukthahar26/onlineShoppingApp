@@ -15,12 +15,18 @@ import ProductList from '../../components/blockComponents/productList';
 import EmptyState from '../../components/blockComponents/emptyState';
 import {screenNames} from '../../constants/constants';
 import {useNavigation} from '@react-navigation/native';
+import AppButton from '../../components/baseComponents/AppButton';
 
 const Home = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<any>();
-  const productListState = useAppSelector(state => state.productList);
-  const {productList, productLoading, productError} = productListState;
+  const {productState, shoppingCartState} = useAppSelector(state => {
+    return {
+      productState: state.productList,
+      shoppingCartState: state.shoppingCartList,
+    };
+  });
+  const {productList, productLoading, productError} = productState;
   useEffect(() => {
     dispatch(productListFetch());
   }, []);
@@ -32,15 +38,20 @@ const Home = () => {
     navigation.navigate(screenNames.PRODUCTDETAILS, {item});
   };
 
+  const navigateToCart = () => {
+    navigation.navigate(screenNames.SHOPPINGCART);
+  };
+
   return (
     <ContainerView
       loading={productLoading}
+      isHeaderRequired={false}
       mainContainerStyle={styles.container}>
       <View style={styles.topContainer}>
-        <View style={styles.headerContainer}>
+        <AppButton onPress={navigateToCart} style={styles.headerContainer}>
           <AppText style={styles.nameLabel}>{dummyData.name}</AppText>
-          <IconWithBadge Icon={BagIcon} badgeValue="3" />
-        </View>
+          <IconWithBadge Icon={BagIcon} badgeValue={shoppingCartState.length} />
+        </AppButton>
         <AppInput
           style={styles.inputcontainer}
           placeholder={dummyData.searchPlaceHolder}

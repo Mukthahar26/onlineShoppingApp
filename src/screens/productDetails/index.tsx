@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ContainerView from '../../components/baseComponents/ContainerView';
 import AppText from '../../components/baseComponents/AppText';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -14,30 +14,42 @@ import {View} from 'react-native';
 import CustomButton from '../../components/blockComponents/customButton';
 import AppButton from '../../components/baseComponents/AppButton';
 import {FavoriteIcon, HeartOutline} from '../../utilities/iconPaths';
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
+import {addToCart} from '../../redux/slicers/shoppingCartSlicer';
+import logger from '../../utilities/logger';
 
 type Props = NativeStackScreenProps<
   RootStackParams,
   screenNames.PRODUCTDETAILS
 >;
 const ProductionDetails = ({route}: Props) => {
+  const dispatch = useAppDispatch();
+  const [isAreadyAdded, setIsAlreadyAdded] = useState(false);
   const {
-    params: {
-      item: {
-        brand,
-        category,
-        description,
-        discountPercentage,
-        images,
-        price,
-        rating,
-        stock,
-        title,
-      },
-    },
+    params: {item},
   } = route;
+  const {id, description, discountPercentage, images, price, rating, title} =
+    item;
+  const shoppingCartState = useAppSelector(state => state.shoppingCartList);
+
+  useEffect(() => {
+    if (!isAreadyAdded) {
+      const index = shoppingCartState.findIndex(item => item.id === id);
+      if (index !== -1) {
+        setIsAlreadyAdded(true);
+      }
+    }
+  }, [shoppingCartState]);
+  logger.log('shoppingCartState :', shoppingCartState);
+
+  const onPress = () => {
+    if (!isAreadyAdded) dispatch(addToCart(item));
+  };
 
   return (
-    <ContainerView mainContainerStyle={styles.container}>
+    <ContainerView
+      badgeCount={shoppingCartState.length}
+      mainContainerStyle={styles.container}>
       <View style={styles.subContainer}>
         <AppText style={styles.title}>{title}</AppText>
         <StarRating
@@ -75,12 +87,17 @@ const ProductionDetails = ({route}: Props) => {
         </View>
         <View style={styles.buttonContainer}>
           <CustomButton
-            label="Add to cart"
+            onPress={onPress}
+            label={isAreadyAdded ? 'Added to Cart' : 'Add to cart'}
             backGroundColor={colorThemes.white}
             labelColor={colorThemes.black}
             style={styles.button}
           />
-          <CustomButton label="Buy Now" style={styles.button} />
+          <CustomButton
+            onPress={onPress}
+            label="Buy Now"
+            style={styles.button}
+          />
         </View>
         <AppText style={styles.details}>Details</AppText>
         <AppText style={styles.desc}>{description}</AppText>

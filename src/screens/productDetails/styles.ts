@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
   },
   dotStyle: {
     width: scale(20),
-    marginHorizontal: 4,
+    marginHorizontal: -5,
+    height: scale(5),
   },
   paginationBoxStyle: {
     alignSelf: 'flex-start',
