@@ -1,7 +1,8 @@
 import axios from 'axios';
-import logger from '../utilities/logger';
+import Config from 'react-native-config';
 
 const axiosInstance = axios.create({
+  baseURL: Config.BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -12,20 +13,28 @@ export const setAuthenticationToken = (token: string) =>
 
 export const fetchGetRequest = async (url: string) => {
   const result = await axiosInstance.get(url);
-  return result.data;
+  return result;
 };
 
 export const fetchPostRequest = async (url: string) => {
   const result = await axiosInstance.post(url);
-  return result.data;
+  return result;
 };
 
-axiosInstance.interceptors.request.use(request => {
-  logger.log('fetch request data :', request);
-  return request;
-});
+axiosInstance.interceptors.request.use(
+  request => {
+    return request;
+  },
+  error => {
+    return Promise.reject(error);
+  },
+);
 
-axiosInstance.interceptors.response.use(response => {
-  logger.log('fetch response data :', response);
-  return response;
-});
+axiosInstance.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    return Promise.reject(error);
+  },
+);

@@ -1,0 +1,12 @@
+import {configureStore} from '@reduxjs/toolkit';
+import productListSlicer from './slicers/productSlicer';
+// ...
+
+export const store = configureStore({
+  reducer: {
+    productList: productListSlicer,
+  },
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

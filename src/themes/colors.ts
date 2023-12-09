@@ -10,4 +10,5 @@ export enum colorThemes {
   yellow = '#F9B023',
   disabledTextColor = '#4a4747',
   disableColor = '#FFBC6E',
+  lightGray = '#e3e3e3',
 }

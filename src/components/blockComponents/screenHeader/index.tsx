@@ -1,16 +1,26 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, ViewStyle} from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import styles from './styles';
 import AppText from '../../baseComponents/AppText';
 import {useNavigation} from '@react-navigation/native';
+import AppButton from '../../baseComponents/AppButton';
+import {BagBlackIcon, GoBackIcon} from '../../../utilities/iconPaths';
+import IconWithBadge from '../iconWithBadge';
 
 type PropsType = {
   headerName?: string;
   isBackRequired?: boolean;
+  isCartIconRequired?: boolean;
+  headerStyle: ViewStyle;
 };
 
-const ScreenHeader = ({headerName, isBackRequired}: PropsType) => {
+const ScreenHeader = ({
+  headerName,
+  isBackRequired,
+  isCartIconRequired,
+  headerStyle,
+}: PropsType) => {
   const navigation = useNavigation();
 
   const goBack = () => {
@@ -18,20 +28,18 @@ const ScreenHeader = ({headerName, isBackRequired}: PropsType) => {
   };
 
   return (
-    <View style={[styles.container, isBackRequired && styles.container2]}>
+    <View style={[styles.container, headerStyle]}>
       {isBackRequired && (
-        <EvilIcons
-          onPress={goBack}
-          name="chevron-left"
-          style={styles.arrowIcon}
-        />
+        <AppButton onPress={goBack}>
+          <GoBackIcon />
+        </AppButton>
       )}
-      <AppText
-        style={[styles.nameLabel, isBackRequired && styles.nameLabel2]}
-        numberOfLines={1}>
-        {headerName}
-      </AppText>
-      {isBackRequired && <View />}
+      <AppText>{headerName}</AppText>
+      {isCartIconRequired ? (
+        <IconWithBadge Icon={BagBlackIcon} badgeValue="3" />
+      ) : (
+        <View />
+      )}
     </View>
   );
 };

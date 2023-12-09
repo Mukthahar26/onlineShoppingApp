@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import AppText from '../../components/baseComponents/AppText';
 import {FlatList, View} from 'react-native';
 import styles from './styles';
@@ -9,13 +9,33 @@ import AppInput from '../../components/baseComponents/AppInput';
 import ContainerView from '../../components/baseComponents/ContainerView';
 import HeadingWithDownText from '../../components/blockComponents/headingWithdownText';
 import OfferCard from '../../components/blockComponents/offerCard';
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
+import {productListFetch} from '../../redux/fetchCalls/productListFetch';
+import ProductList from '../../components/blockComponents/productList';
+import EmptyState from '../../components/blockComponents/emptyState';
+import {screenNames} from '../../constants/constants';
+import {useNavigation} from '@react-navigation/native';
 
 const Home = () => {
+  const dispatch = useAppDispatch();
+  const navigation = useNavigation<any>();
+  const productListState = useAppSelector(state => state.productList);
+  const {productList, productLoading, productError} = productListState;
+  useEffect(() => {
+    dispatch(productListFetch());
+  }, []);
+
   const renderItems = ({item}: any) => {
     return <OfferCard style={styles.item} item={item} />;
   };
+  const onPressItem = (item: any) => {
+    navigation.navigate(screenNames.PRODUCTDETAILS, {item});
+  };
+
   return (
-    <ContainerView style={styles.container}>
+    <ContainerView
+      loading={productLoading}
+      mainContainerStyle={styles.container}>
       <View style={styles.topContainer}>
         <View style={styles.headerContainer}>
           <AppText style={styles.nameLabel}>{dummyData.name}</AppText>
@@ -47,6 +67,11 @@ const Home = () => {
         <AppText style={styles.recommendedTitle}>
           {dummyData.recommonded}
         </AppText>
+        {!productError ? (
+          <ProductList onPressItem={onPressItem} data={productList} />
+        ) : (
+          <EmptyState message="Product list is empty" />
+        )}
       </View>
     </ContainerView>
   );

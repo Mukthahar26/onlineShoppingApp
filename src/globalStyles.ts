@@ -13,7 +13,6 @@ export default StyleSheet.create({
     borderTopRightRadius: scale(30),
     borderTopLeftRadius: scale(30),
     position: 'absolute',
-    backgroundColor: 'transparent',
   },
   tabItem: {
     alignItems: 'center',

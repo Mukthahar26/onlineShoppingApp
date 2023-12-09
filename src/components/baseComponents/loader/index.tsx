@@ -6,11 +6,11 @@ type Props = {
   color?: string;
 };
 const Loader = ({color}: Props) => {
-  return <ActivityIndicator color={color} />;
+  return <ActivityIndicator color={color} size={'large'} />;
 };
 
 Loader.defaultProps = {
-  color: colorThemes.black,
+  color: colorThemes.blue,
 };
 
 export default Loader;

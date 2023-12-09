@@ -3,32 +3,26 @@ import {scale} from 'react-native-size-matters';
 import {colorThemes} from '../../../themes/colors';
 import sizeValues from '../../../themes/sizeValues';
 
-const imageSize = scale(40);
 export default StyleSheet.create({
   container: {
-    height: imageSize + scale(15),
-    backgroundColor: colorThemes.brandColor,
-    elevation: 1,
-    justifyContent: 'center',
-  },
-  container2: {
+    height: scale(60),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-end',
+    paddingRight: sizeValues.size16,
+    paddingLeft: sizeValues.size16,
+  },
+  topContainer: {
+    backgroundColor: colorThemes.blue,
+    paddingLeft: sizeValues.size16,
+    paddingRight: sizeValues.size16,
+    paddingBottom: scale(12),
+  },
+  headerContainer: {
+    marginTop: scale(40),
   },
   nameLabel: {
-    fontWeight: '500',
-    fontSize: sizeValues.fontLarge,
     color: colorThemes.white,
-    alignSelf: 'center',
-  },
-  nameLabel2: {
-    marginLeft: scale(-40),
-    maxWidth: '70%',
-  },
-  arrowIcon: {
-    fontSize: imageSize,
-    resizeMode: 'contain',
-    color: colorThemes.white,
+    fontSize: scale(22),
   },
 });
