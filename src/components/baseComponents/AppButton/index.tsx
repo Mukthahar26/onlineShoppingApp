@@ -18,6 +18,7 @@ const AppButton = ({
   onKeyUp,
   isDisabled,
   disabledStyle,
+  hitSlop,
   isUderLined,
   testID,
   ...otherProps
@@ -37,6 +38,7 @@ const AppButton = ({
   return (
     <Pressable
       accessibilityLabel={testID}
+      hitSlop={hitSlop}
       testID={testID}
       onPressIn={onKeyDown}
       onPressOut={onKeyUp}

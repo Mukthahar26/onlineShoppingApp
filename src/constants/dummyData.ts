@@ -1,5 +1,5 @@
 export const dummyData = {
-  name: 'Hey, Rahul',
+  name: 'Hey, Mukthahar',
   searchPlaceHolder: 'Search Products or store',
   deliverTo: 'DELIVER TO',
   address: 'Green Way, 3000, Sylhet',

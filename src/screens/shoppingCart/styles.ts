@@ -5,9 +5,12 @@ import sizeValues from '../../themes/sizeValues';
 
 const styles = StyleSheet.create({
   containerStyle: {
-    flex: 1,
     justifyContent: 'center',
     marginTop: scale(-70),
+  },
+  removeCenterStyle: {
+    justifyContent: 'flex-start',
+    marginTop: 0,
   },
   pricesCard: {
     elevation: 0,

@@ -89,7 +89,7 @@ const ContainerView = ({
     }
   };
   return (
-    <SafeAreaView style={[{flex: 1}, mainContainerStyle]}>
+    <SafeAreaView style={[styles.mainContainerStyle, mainContainerStyle]}>
       {renderLoader()}
     </SafeAreaView>
   );

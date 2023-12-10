@@ -3,7 +3,6 @@ import {View, ViewStyle} from 'react-native';
 import AppText from '../../baseComponents/AppText';
 import styles from './styles';
 import {ImageIcon} from '../../../utilities/iconPaths';
-import {colorThemes} from '../../../themes/colors';
 
 type offerCardProps = {
   item: any;

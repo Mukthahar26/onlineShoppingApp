@@ -3,7 +3,9 @@ import {colorThemes} from '../../themes/colors';
 import {scale} from 'react-native-size-matters';
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    padding: 0,
+  },
   subContainer: {
     padding: scale(20),
   },
@@ -14,7 +16,6 @@ const styles = StyleSheet.create({
   },
   image: {
     backgroundColor: colorThemes.black,
-    elevation: scale(10),
   },
   dotStyle: {
     width: scale(20),

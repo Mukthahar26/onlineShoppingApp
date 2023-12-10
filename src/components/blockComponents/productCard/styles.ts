@@ -36,12 +36,17 @@ export default StyleSheet.create({
   },
   price: {
     fontSize: sizeValues.fontMedium,
-    fontWeight: '600',
+    fontWeight: '700',
     marginTop: scale(10),
   },
   title: {
     fontSize: sizeValues.fontNormal,
-    fontWeight: '400',
+    fontWeight: '300',
     marginTop: scale(10),
+  },
+  addToCart: {
+    position: 'absolute',
+    right: 5,
+    top: scale(10),
   },
 });

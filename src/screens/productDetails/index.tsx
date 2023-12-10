@@ -18,6 +18,7 @@ import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {addToCart} from '../../redux/slicers/shoppingCartSlicer';
 import logger from '../../utilities/logger';
 import {useFocusEffect} from '@react-navigation/native';
+import {toastMessage} from '../../utilities/utils';
 
 type Props = NativeStackScreenProps<
   RootStackParams,
@@ -33,32 +34,27 @@ const ProductionDetails = ({route}: Props) => {
     item;
   const shoppingCartState = useAppSelector(state => state.shoppingCartList);
 
-  useEffect(() => {
-    if (!isAreadyAdded) {
-      const index = shoppingCartState.findIndex(item => item.id === id);
-      if (index !== -1) {
-        setIsAlreadyAdded(true);
-      }
-    }
-  }, [shoppingCartState]);
-
   useFocusEffect(
     useCallback(() => {
       const index = shoppingCartState.findIndex(item => item.id === id);
       if (index !== -1) {
         setIsAlreadyAdded(true);
       } else setIsAlreadyAdded(false);
-    }, []),
+    }, [shoppingCartState]),
   );
 
-  const onPress = () => {
+  const onPressAddToCart = () => {
     if (!isAreadyAdded) dispatch(addToCart(item));
+  };
+
+  const buyNow = () => {
+    toastMessage('Buying option clicked');
   };
 
   return (
     <ContainerView
       badgeCount={shoppingCartState.length}
-      mainContainerStyle={styles.container}>
+      containerStyle={styles.container}>
       <View style={styles.subContainer}>
         <AppText style={styles.title}>{title}</AppText>
         <StarRating
@@ -66,6 +62,7 @@ const ProductionDetails = ({route}: Props) => {
           maxStars={5}
           rating={rating}
           starSize={scale(13)}
+          emptyStarColor="red"
           fullStarColor={colorThemes.yellow}
           containerStyle={{width: 80}}
         />
@@ -81,7 +78,6 @@ const ProductionDetails = ({route}: Props) => {
           circleLoop
           ImageComponent={FastImage}
           ImageComponentStyle={styles.image}
-          imageLoadingColor={colorThemes.brandColor}
           dotStyle={styles.dotStyle}
           paginationBoxStyle={styles.paginationBoxStyle}
         />
@@ -96,14 +92,14 @@ const ProductionDetails = ({route}: Props) => {
         </View>
         <View style={styles.buttonContainer}>
           <CustomButton
-            onPress={onPress}
+            onPress={onPressAddToCart}
             label={isAreadyAdded ? 'Added to Cart' : 'Add to cart'}
             backGroundColor={colorThemes.white}
             labelColor={colorThemes.black}
             style={styles.button}
           />
           <CustomButton
-            onPress={onPress}
+            onPress={buyNow}
             label="Buy Now"
             style={styles.button}
           />

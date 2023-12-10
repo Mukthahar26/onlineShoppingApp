@@ -1,5 +1,5 @@
-import React from "react";
-import { TextStyle, ViewStyle } from "react-native";
+import React from 'react';
+import {TextStyle, ViewStyle} from 'react-native';
 
 export type AppButtonProps = {
   onPress: any;
@@ -17,4 +17,5 @@ export type AppButtonProps = {
   onKeyUp?: any;
   isUderLined?: boolean;
   testID?: string;
+  hitSlop?: number;
 };

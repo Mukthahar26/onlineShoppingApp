@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import AppText from '../../components/baseComponents/AppText';
 import ContainerView from '../../components/baseComponents/ContainerView';
 import {useAppSelector} from '../../redux/hooks';
-import {Alert, FlatList, View} from 'react-native';
+import {Alert, FlatList, View, ViewStyle} from 'react-native';
 import ShoppingCartCard from '../../components/blockComponents/shoppingCartCard';
 import {shoppingCartItem} from '../../redux/slicers/shoppingCartSlicer';
 import UnderLine from '../../components/baseComponents/underLine';
@@ -14,8 +14,15 @@ const ShoppingCart = () => {
   const shoppingCartState = useAppSelector(state => state.shoppingCartList);
   const [editMode, setEdmitMote] = useState(false);
   const cartLength = shoppingCartState.length;
-  const renderItem = ({item}: {item: shoppingCartItem}) => {
-    return <ShoppingCartCard item={item} editMode={editMode} />;
+
+  const renderItem = ({
+    item,
+    index,
+  }: {
+    index: number;
+    item: shoppingCartItem;
+  }) => {
+    return <ShoppingCartCard item={item} index={index} editMode={editMode} />;
   };
 
   const getTotalPriceForAllITems = () =>
@@ -33,7 +40,12 @@ const ShoppingCart = () => {
 
   return (
     <ContainerView
-      containerStyle={styles.containerStyle}
+      containerStyle={
+        [
+          styles.containerStyle,
+          cartLength && styles.removeCenterStyle,
+        ] as ViewStyle
+      }
       isCartIconRequired={false}
       headerName={`Shopping Cart (${cartLength})`}>
       {cartLength ? (

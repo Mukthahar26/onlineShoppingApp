@@ -46,7 +46,7 @@ const Home = () => {
     <ContainerView
       loading={productLoading}
       isHeaderRequired={false}
-      mainContainerStyle={styles.container}>
+      containerStyle={styles.container}>
       <View style={styles.topContainer}>
         <AppButton onPress={navigateToCart} style={styles.headerContainer}>
           <AppText style={styles.nameLabel}>{dummyData.name}</AppText>

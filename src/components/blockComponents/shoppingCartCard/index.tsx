@@ -19,8 +19,9 @@ import AppButton from '../../baseComponents/AppButton';
 type Props = {
   item: shoppingCartItem;
   editMode: boolean;
+  index: number;
 };
-const ShoppingCartCard = ({item, editMode}: Props) => {
+const ShoppingCartCard = ({item, editMode, index}: Props) => {
   const dispatch = useAppDispatch();
   const swipeableRef = useRef<any>(null);
 
@@ -28,7 +29,7 @@ const ShoppingCartCard = ({item, editMode}: Props) => {
   const {thumbnail, title, stock} = product;
 
   useEffect(() => {
-    if (editMode) {
+    if (editMode && index === 0) {
       setTimeout(() => {
         if (swipeableRef.current) {
           swipeableRef.current.openRight();
@@ -60,11 +61,8 @@ const ShoppingCartCard = ({item, editMode}: Props) => {
     );
   };
 
-  return (
-    <Swipeable
-      containerStyle={styles.swipeable}
-      ref={swipeableRef}
-      renderRightActions={renderRightActions}>
+  const renderUI = () => {
+    return (
       <View style={styles.item}>
         <View style={styles.imageName}>
           <Image source={{uri: thumbnail}} style={styles.thumbnail} />
@@ -92,7 +90,18 @@ const ShoppingCartCard = ({item, editMode}: Props) => {
           )}
         </View>
       </View>
+    );
+  };
+
+  return editMode ? (
+    <Swipeable
+      containerStyle={styles.swipeable}
+      ref={swipeableRef}
+      renderRightActions={renderRightActions}>
+      {renderUI()}
     </Swipeable>
+  ) : (
+    renderUI()
   );
 };
 

@@ -8,6 +8,8 @@ const styles = StyleSheet.create({
     color: colorThemes.black1,
     fontSize: sizeValues.fontNormal,
     includeFontPadding: false,
+    fontFamily: 'Manrope-Regular',
+    letterSpacing: 1,
   },
 });
 

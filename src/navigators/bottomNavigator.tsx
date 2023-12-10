@@ -15,6 +15,7 @@ import {
   HomeIcon,
   MoreIcon,
 } from '../utilities/iconPaths';
+import {colorThemes} from '../themes/colors';
 
 export type bottomNavigatorParams = {
   [screenNames.HOME]: undefined;
@@ -25,18 +26,13 @@ export type bottomNavigatorParams = {
 
 const BottomTabs = createBottomTabNavigator<bottomNavigatorParams>();
 
-const renderBottomTab = ({focused, labelName, color, IconName}: any) => {
-  const isHomeScreen = labelName === 'Home';
+const renderBottomTab = ({focused, labelName, IconName}: any) => {
   return (
     <View style={[globalStyles.tabItem]}>
-      <View style={[isHomeScreen && globalStyles.homeIconStyle]}>
-        <IconName />
+      <View style={[focused && globalStyles.selectedIcon]}>
+        <IconName fill={focused ? colorThemes.yellow : colorThemes.white} />
       </View>
-      {!isHomeScreen && (
-        <AppText style={{color, fontWeight: focused ? '500' : '400'}}>
-          {labelName}
-        </AppText>
-      )}
+      {!focused && <AppText style={{fontWeight: '500'}}>{labelName}</AppText>}
     </View>
   );
 };

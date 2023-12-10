@@ -3,6 +3,10 @@ import sizeValues from '../../../themes/sizeValues';
 import {colorThemes} from '../../../themes/colors';
 
 const styles = ScaledSheet.create({
+  mainContainerStyle: {
+    flex: 1,
+    backgroundColor: colorThemes.white,
+  },
   safeContainer: {
     flex: 1,
     padding: sizeValues.size16,

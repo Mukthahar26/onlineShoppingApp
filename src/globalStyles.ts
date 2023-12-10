@@ -3,6 +3,7 @@ import sizeValues from './themes/sizeValues';
 import {scale} from 'react-native-size-matters';
 import {colorThemes} from './themes/colors';
 
+const circle = scale(60);
 export default StyleSheet.create({
   titleLargeSize: {
     fontWeight: '700',
@@ -20,9 +21,14 @@ export default StyleSheet.create({
     width: '100%',
   },
 
-  homeIconStyle: {
-    marginBottom: 10,
-    backgroundColor: 'transparent',
+  selectedIcon: {
+    marginBottom: scale(50),
+    backgroundColor: colorThemes.black,
+    height: circle,
+    width: circle,
+    borderRadius: circle / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   curveBackground: {
     position: 'absolute',
