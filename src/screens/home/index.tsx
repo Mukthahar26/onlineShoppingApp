@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import AppText from '../../components/baseComponents/AppText';
 import {View} from 'react-native';
 import styles from './styles';
@@ -20,7 +20,6 @@ import AdsList from '../../components/blockComponents/adsList';
 const Home = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<any>();
-  const [dummy, setDummy] = useState(1);
   const {productState, shoppingCartState} = useAppSelector(state => {
     return {
       productState: state.productList,
@@ -65,7 +64,6 @@ const Home = () => {
           />
         </View>
       </View>
-      <AppText onPress={() => setDummy(prev => prev + 1)}>djfksjafkjas</AppText>
       <AdsList data={offerList} />
       <View style={styles.subContainer2}>
         <AppText style={styles.recommendedTitle}>

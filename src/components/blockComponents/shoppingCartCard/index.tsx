@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import {Image, View} from 'react-native';
+import {View} from 'react-native';
 import AppText from '../../baseComponents/AppText';
 import {
   decreaseQuantity,
@@ -10,6 +10,8 @@ import {
 import styles from './styles';
 import {useAppDispatch} from '../../../redux/hooks';
 import {RectButton, Swipeable} from 'react-native-gesture-handler';
+import ImageViewer from '../imageViewer';
+import {isFieldEmpty} from '../../../utilities/utils';
 
 type Props = {
   item: shoppingCartItem;
@@ -60,10 +62,14 @@ const ShoppingCartCard = ({item, editMode, index}: Props) => {
     return (
       <View style={styles.item}>
         <View style={styles.imageName}>
-          <Image source={{uri: thumbnail}} style={styles.thumbnail} />
+          <ImageViewer uri={thumbnail} style={styles.thumbnail} />
           <View style={styles.namePrice}>
-            <AppText style={styles.title}>{title}</AppText>
-            <AppText style={styles.title}>{`$${totalPrice}`}</AppText>
+            {isFieldEmpty(title) && (
+              <AppText style={styles.title}>{title}</AppText>
+            )}
+            {isFieldEmpty(totalPrice + '') && (
+              <AppText style={styles.title}>{`$${totalPrice}`}</AppText>
+            )}
           </View>
         </View>
 

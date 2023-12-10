@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import {convertWidthPercentageToValue} from '../../../utilities/utils';
 import {scale} from 'react-native-size-matters';
 import {colorThemes} from '../../../themes/colors';
 import sizeValues from '../../../themes/sizeValues';

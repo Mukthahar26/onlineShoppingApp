@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {Image, View} from 'react-native';
+import {View} from 'react-native';
 import {productItemType} from '../../../redux/slicers/productSlicer';
 import AppButton from '../../baseComponents/AppButton';
 import styles from './styles';
@@ -13,6 +13,8 @@ import Card from '../../baseComponents/card';
 import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
 import {addToCart} from '../../../redux/slicers/shoppingCartSlicer';
 import {useFocusEffect} from '@react-navigation/native';
+import {isFieldEmpty} from '../../../utilities/utils';
+import ImageViewer from '../imageViewer';
 
 type Props = {
   item: productItemType;
@@ -42,15 +44,17 @@ const ProductCard = ({item, onPressItem}: Props) => {
       <AppButton style={styles.favoriteContainer}>
         {true ? <FavoriteIcon /> : <HeartOutline />}
       </AppButton>
-      <Image source={{uri: thumbnail}} style={styles.thumbnail} />
+      <ImageViewer uri={thumbnail} />
       <View style={styles.details}>
         {!isAreadyAdded && (
           <AppButton onPress={onPressAddToCart} style={styles.addToCart}>
             <AddToCartIcon />
           </AppButton>
         )}
-        <AppText style={styles.price}>{`$${price}`}</AppText>
-        <AppText style={styles.title}>{title}</AppText>
+        {isFieldEmpty(price + '') && (
+          <AppText style={styles.price}>{`$${price}`}</AppText>
+        )}
+        {isFieldEmpty(title) && <AppText style={styles.title}>{title}</AppText>}
       </View>
     </Card>
   );

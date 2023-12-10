@@ -3,6 +3,7 @@ import {FlatList, View} from 'react-native';
 import {productItemType} from '../../../redux/slicers/productSlicer';
 import ProductCard from '../productCard';
 import styles from './styles';
+import {isArray} from '../../../utilities/utils';
 
 type Props = {
   data: {
@@ -13,6 +14,8 @@ type Props = {
 };
 
 const ProductList = ({data, onPressItem}: Props) => {
+  const productsList = data && isArray(data.products) ? data.products : [];
+
   const renderItem = ({item}: {item: productItemType}) => {
     return <ProductCard onPressItem={onPressItem} item={item} />;
   };
@@ -23,7 +26,7 @@ const ProductList = ({data, onPressItem}: Props) => {
         style={styles.container}
         columnWrapperStyle={styles.columnWrapper}
         keyExtractor={item => item.id.toString()}
-        data={data.products}
+        data={productsList}
         renderItem={renderItem}
       />
     </View>

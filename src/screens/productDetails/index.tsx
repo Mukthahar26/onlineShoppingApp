@@ -17,7 +17,7 @@ import {FavoriteIcon, HeartOutline} from '../../utilities/iconPaths';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {addToCart} from '../../redux/slicers/shoppingCartSlicer';
 import {useFocusEffect} from '@react-navigation/native';
-import {toastMessage} from '../../utilities/utils';
+import {isFieldEmpty, toastMessage} from '../../utilities/utils';
 
 type Props = NativeStackScreenProps<
   RootStackParams,
@@ -83,7 +83,7 @@ const ProductionDetails = ({route}: Props) => {
       <View style={styles.subContainer}>
         <View style={styles.priceContainer}>
           <AppText style={styles.price}>{`$${price}`}</AppText>
-          {discountPercentage && (
+          {isFieldEmpty(discountPercentage + '') && (
             <AppText
               style={styles.offer}>{`$${discountPercentage} OFF`}</AppText>
           )}
@@ -103,7 +103,9 @@ const ProductionDetails = ({route}: Props) => {
           />
         </View>
         <AppText style={styles.details}>Details</AppText>
-        <AppText style={styles.desc}>{description}</AppText>
+        {isFieldEmpty(description) && (
+          <AppText style={styles.desc}>{description}</AppText>
+        )}
       </View>
     </ContainerView>
   );

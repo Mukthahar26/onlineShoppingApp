@@ -5,10 +5,6 @@ import {colorThemes} from './themes/colors';
 
 const circle = scale(60);
 export default StyleSheet.create({
-  titleLargeSize: {
-    fontWeight: '700',
-    fontSize: sizeValues.fontLarge,
-  },
   tabBarStyle: {
     height: scale(60),
     borderTopRightRadius: scale(30),
@@ -29,11 +25,5 @@ export default StyleSheet.create({
     borderRadius: circle / 2,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  curveBackground: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
   },
 });

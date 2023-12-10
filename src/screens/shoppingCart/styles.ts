@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
   containerStyle: {
     justifyContent: 'center',
     marginTop: scale(-70),
+    backgroundColor: colorThemes.white,
   },
   removeCenterStyle: {
     justifyContent: 'flex-start',

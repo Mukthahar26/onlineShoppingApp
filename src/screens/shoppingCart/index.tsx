@@ -12,7 +12,7 @@ import EmptyState from '../../components/blockComponents/emptyState';
 
 const ShoppingCart = () => {
   const shoppingCartState = useAppSelector(state => state.shoppingCartList);
-  const [editMode, setEdmitMote] = useState(false);
+  const [editMode, setEditMode] = useState(false);
   const cartLength = shoppingCartState.length;
 
   const renderItem = ({
@@ -36,7 +36,7 @@ const ShoppingCart = () => {
       {value: 'Total', amount: `$${total + 2}`},
     ];
   };
-  const proceed = () => Alert.alert('Ordered All items');
+  const proceed = () => Alert.alert('Proceed Clicked');
 
   return (
     <ContainerView
@@ -60,7 +60,7 @@ const ShoppingCart = () => {
             )}
           />
           <AppText
-            onPress={() => setEdmitMote(prev => !prev)}
+            onPress={() => setEditMode(prev => !prev)}
             style={styles.edit}>
             {editMode ? 'Done' : 'Edit'}
           </AppText>
