@@ -61,7 +61,6 @@ const ProductionDetails = ({route}: Props) => {
           maxStars={5}
           rating={rating}
           starSize={scale(13)}
-          emptyStarColor="red"
           fullStarColor={colorThemes.yellow}
           containerStyle={{width: 80}}
         />

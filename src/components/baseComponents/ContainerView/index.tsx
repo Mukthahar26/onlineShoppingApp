@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, FlatList, Dimensions, ViewStyle} from 'react-native';
 import styles from './styles';
-import {useNavigation} from '@react-navigation/native';
 import ScreenHeader from '../../blockComponents/screenHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {scale} from 'react-native-size-matters';
 import Loader from '../loader';
+import logger from '../../../utilities/logger';
 
 const {height} = Dimensions.get('window');
 
@@ -38,7 +38,7 @@ const ContainerView = ({
   headerStyle,
   badgeCount,
 }: props) => {
-  const navigation = useNavigation<any>();
+  const renderContent = () => <View>{children}</View>;
 
   const renderLoader = () => {
     if (loading) {
@@ -50,7 +50,7 @@ const ContainerView = ({
     } else {
       return (
         <>
-          {isHeaderRequired && navigation.canGoBack() && (
+          {isHeaderRequired && (
             <ScreenHeader
               badgeCount={badgeCount}
               headerStyle={headerStyle as ViewStyle}
@@ -68,7 +68,7 @@ const ContainerView = ({
                 {paddingBottom: isIgnoreBottomBar ? scale(80) : scale(10)},
               ]}
               showsVerticalScrollIndicator={false}
-              renderItem={() => <View>{children}</View>}
+              renderItem={renderContent}
               keyExtractor={(_, index) => index.toString()}
             />
           ) : (

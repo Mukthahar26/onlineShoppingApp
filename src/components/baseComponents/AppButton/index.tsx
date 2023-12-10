@@ -11,7 +11,6 @@ const AppButton = ({
   textStyle,
   children,
   isDisabled,
-  hitSlop,
   testID,
   ...otherProps
 }: AppButtonProps) => {

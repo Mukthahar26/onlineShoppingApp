@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import AppText from '../../components/baseComponents/AppText';
-import {FlatList, View} from 'react-native';
+import {View} from 'react-native';
 import styles from './styles';
 import {dummyData, offerList} from '../../constants/dummyData';
 import {BagIcon} from '../../utilities/iconPaths';
@@ -8,7 +8,6 @@ import IconWithBadge from '../../components/blockComponents/iconWithBadge';
 import AppInput from '../../components/baseComponents/AppInput';
 import ContainerView from '../../components/baseComponents/ContainerView';
 import HeadingWithDownText from '../../components/blockComponents/headingWithdownText';
-import OfferCard from '../../components/blockComponents/offerCard';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {productListFetch} from '../../redux/fetchCalls/productListFetch';
 import ProductList from '../../components/blockComponents/productList';
@@ -16,10 +15,12 @@ import EmptyState from '../../components/blockComponents/emptyState';
 import {screenNames} from '../../constants/constants';
 import {useNavigation} from '@react-navigation/native';
 import AppButton from '../../components/baseComponents/AppButton';
+import AdsList from '../../components/blockComponents/adsList';
 
 const Home = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<any>();
+  const [dummy, setDummy] = useState(1);
   const {productState, shoppingCartState} = useAppSelector(state => {
     return {
       productState: state.productList,
@@ -31,9 +32,6 @@ const Home = () => {
     dispatch(productListFetch());
   }, []);
 
-  const renderItems = ({item}: any) => {
-    return <OfferCard style={styles.item} item={item} />;
-  };
   const onPressItem = (item: any) => {
     navigation.navigate(screenNames.PRODUCTDETAILS, {item});
   };
@@ -67,14 +65,8 @@ const Home = () => {
           />
         </View>
       </View>
-      <FlatList
-        contentContainerStyle={styles.flatListStyle}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={(_, index) => index.toString()}
-        data={offerList}
-        renderItem={renderItems}
-      />
+      <AppText onPress={() => setDummy(prev => prev + 1)}>djfksjafkjas</AppText>
+      <AdsList data={offerList} />
       <View style={styles.subContainer2}>
         <AppText style={styles.recommendedTitle}>
           {dummyData.recommonded}
