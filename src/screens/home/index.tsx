@@ -71,6 +71,7 @@ const Home = () => {
         contentContainerStyle={styles.flatListStyle}
         horizontal
         showsHorizontalScrollIndicator={false}
+        keyExtractor={(_, index) => index.toString()}
         data={offerList}
         renderItem={renderItems}
       />

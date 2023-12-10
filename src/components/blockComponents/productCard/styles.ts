@@ -48,5 +48,6 @@ export default StyleSheet.create({
     position: 'absolute',
     right: 5,
     top: scale(10),
+    zIndex: 1,
   },
 });

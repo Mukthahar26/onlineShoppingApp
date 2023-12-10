@@ -1,19 +1,16 @@
-import {View, Text, TextStyle} from 'react-native';
+import {Text} from 'react-native';
 import React from 'react';
 import styles from './styles';
 
 type props = {
   children: any;
   style?: any;
-  props?: any;
-  numberOfLines?: number;
-  adjustsFontSizeToFit?: boolean;
   onPress?: any;
 };
 
-const AppText = ({children, onPress, style, ...props}: props) => {
+const AppText = ({children, onPress, style}: props) => {
   return (
-    <Text {...props} onPress={onPress} style={[styles.textStyle, style]}>
+    <Text onPress={onPress} style={[styles.textStyle, style]}>
       {children}
     </Text>
   );

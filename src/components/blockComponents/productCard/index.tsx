@@ -45,14 +45,11 @@ const ProductCard = ({item, onPressItem}: Props) => {
       <Image source={{uri: thumbnail}} style={styles.thumbnail} />
       <View style={styles.details}>
         {!isAreadyAdded && (
-          <AppButton
-            hitSlop={20}
-            onPress={onPressAddToCart}
-            style={styles.addToCart}>
+          <AppButton onPress={onPressAddToCart} style={styles.addToCart}>
             <AddToCartIcon />
           </AppButton>
         )}
-        <AppText style={styles.price}>{`$ ${price}`}</AppText>
+        <AppText style={styles.price}>{`$${price}`}</AppText>
         <AppText style={styles.title}>{title}</AppText>
       </View>
     </Card>

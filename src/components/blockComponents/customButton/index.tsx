@@ -1,5 +1,5 @@
-import React, {FunctionComponent} from 'react';
-import {View, ViewStyle} from 'react-native';
+import React from 'react';
+import {ViewStyle} from 'react-native';
 import AppButton from '../../baseComponents/AppButton';
 import AppText from '../../baseComponents/AppText';
 import styles from './styles';

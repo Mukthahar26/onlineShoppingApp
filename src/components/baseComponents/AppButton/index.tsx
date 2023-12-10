@@ -9,17 +9,9 @@ const AppButton = ({
   onPress,
   style,
   textStyle,
-  text,
   children,
-  adjustsFontSizeToFit,
-  showLoader,
-  onLongPress,
-  onKeyDown,
-  onKeyUp,
   isDisabled,
-  disabledStyle,
   hitSlop,
-  isUderLined,
   testID,
   ...otherProps
 }: AppButtonProps) => {
@@ -31,44 +23,19 @@ const AppButton = ({
 
   const onClickLongPress = () => {
     if (!isDisabled) {
-      onLongPress();
+      onPress();
     }
   };
 
   return (
     <Pressable
       accessibilityLabel={testID}
-      hitSlop={hitSlop}
       testID={testID}
-      onPressIn={onKeyDown}
-      onPressOut={onKeyUp}
       disabled={isDisabled}
       style={[style as ViewStyle]}
       onPress={onClickPress}
       onLongPress={onClickLongPress}
       {...otherProps}>
-      {text && (
-        <AppText
-          style={
-            [
-              {color: colorThemes.black1},
-              textStyle,
-              isUderLined && {textDecorationLine: 'underline'},
-              isDisabled && {color: colorThemes.disabledTextColor},
-            ] as TextStyle
-          }
-          numberOfLines={1}>
-          {text}
-        </AppText>
-      )}
-      {showLoader && (
-        <ActivityIndicator
-          animating={showLoader}
-          color={colorThemes.black1 as string}
-          size="small"
-          style={{marginLeft: scale(30)}}
-        />
-      )}
       {children}
     </Pressable>
   );
@@ -81,8 +48,6 @@ AppButton.defaultProps = {
   textStyle: {},
   children: null,
   text: undefined,
-  adjustsFontSizeToFit: true,
-  showLoader: false,
   isDisabled: false,
   disabledStyle: {},
 };

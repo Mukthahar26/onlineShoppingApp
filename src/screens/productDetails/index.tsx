@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import ContainerView from '../../components/baseComponents/ContainerView';
 import AppText from '../../components/baseComponents/AppText';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -16,7 +16,6 @@ import AppButton from '../../components/baseComponents/AppButton';
 import {FavoriteIcon, HeartOutline} from '../../utilities/iconPaths';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {addToCart} from '../../redux/slicers/shoppingCartSlicer';
-import logger from '../../utilities/logger';
 import {useFocusEffect} from '@react-navigation/native';
 import {toastMessage} from '../../utilities/utils';
 
@@ -84,10 +83,10 @@ const ProductionDetails = ({route}: Props) => {
       </View>
       <View style={styles.subContainer}>
         <View style={styles.priceContainer}>
-          <AppText style={styles.price}>{`$ ${price}`}</AppText>
+          <AppText style={styles.price}>{`$${price}`}</AppText>
           {discountPercentage && (
             <AppText
-              style={styles.offer}>{`$ ${discountPercentage} OFF`}</AppText>
+              style={styles.offer}>{`$${discountPercentage} OFF`}</AppText>
           )}
         </View>
         <View style={styles.buttonContainer}>

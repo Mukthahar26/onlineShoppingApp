@@ -22,7 +22,7 @@ const ProductList = ({data, onPressItem}: Props) => {
         numColumns={2}
         style={styles.container}
         columnWrapperStyle={styles.columnWrapper}
-        keyExtractor={(_, index) => index.toString()}
+        keyExtractor={item => item.id.toString()}
         data={data.products}
         renderItem={renderItem}
       />

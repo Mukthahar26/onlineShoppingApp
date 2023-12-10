@@ -4,7 +4,6 @@ import Home from '../screens/home';
 import {screenNames} from '../constants/constants';
 import {View} from 'react-native';
 import AppText from '../components/baseComponents/AppText';
-import {isFieldEmpty} from '../utilities/utils';
 import Categories from '../screens/categories';
 import Favorite from '../screens/favorite';
 import More from '../screens/more/indext';

@@ -65,9 +65,9 @@ const ShoppingCart = () => {
             {editMode ? 'Done' : 'Edit'}
           </AppText>
           <View style={styles.pricesCard}>
-            {pricesList().map(item => {
+            {pricesList().map((item, index) => {
               return (
-                <View style={styles.row}>
+                <View key={index} style={styles.row}>
                   <AppText>{item.value}</AppText>
                   <AppText>{item.amount}</AppText>
                 </View>

@@ -9,7 +9,7 @@ type Props = {
   onPress: () => void;
 };
 
-const Card = ({children, style, onPress}: any) => {
+const Card = ({children, style, onPress}: Props) => {
   return (
     <AppButton onPress={onPress} style={[styles.container, style] as ViewStyle}>
       {children}

@@ -1,25 +1,17 @@
 import React from 'react';
-import {
-  View,
-  FlatList,
-  Dimensions,
-  ViewStyle,
-  ActivityIndicator,
-} from 'react-native';
+import {View, FlatList, Dimensions, ViewStyle} from 'react-native';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import ScreenHeader from '../../blockComponents/screenHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {scale} from 'react-native-size-matters';
 import Loader from '../loader';
-import {colorThemes} from '../../../themes/colors';
 
 const {height} = Dimensions.get('window');
 
 type props = {
   children: any;
   style?: ViewStyle;
-  lottiStyle?: ViewStyle;
   containerStyle?: ViewStyle;
   headerName?: string;
   isBackRequired?: boolean;

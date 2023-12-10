@@ -1,7 +1,6 @@
-import React, {FunctionComponent} from 'react';
+import React from 'react';
 import {View} from 'react-native';
 import AppText from '../../baseComponents/AppText';
-import {dummyData} from '../../../constants/dummyData';
 import {DownArrowIcon} from '../../../utilities/iconPaths';
 import styles from './styles';
 

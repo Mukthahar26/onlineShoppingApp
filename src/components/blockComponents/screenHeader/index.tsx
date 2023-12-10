@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, ViewStyle} from 'react-native';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import styles from './styles';
 import AppText from '../../baseComponents/AppText';
 import {useNavigation} from '@react-navigation/native';

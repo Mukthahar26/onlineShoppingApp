@@ -1,7 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {Image, View} from 'react-native';
 import AppText from '../../baseComponents/AppText';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import {
   decreaseQuantity,
   increaseQuantity,
@@ -10,11 +9,7 @@ import {
 } from '../../../redux/slicers/shoppingCartSlicer';
 import styles from './styles';
 import {useAppDispatch} from '../../../redux/hooks';
-import {scale} from 'react-native-size-matters';
-import {colorThemes} from '../../../themes/colors';
-import Animated from 'react-native-reanimated';
 import {RectButton, Swipeable} from 'react-native-gesture-handler';
-import AppButton from '../../baseComponents/AppButton';
 
 type Props = {
   item: shoppingCartItem;
