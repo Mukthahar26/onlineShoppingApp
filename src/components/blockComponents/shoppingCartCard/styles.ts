@@ -12,10 +12,11 @@ export default StyleSheet.create({
     borderRadius: scale(5),
   },
   item: {
-    paddingTop: sizeValues.size16,
-    paddingBottom: sizeValues.size16,
+    padding: sizeValues.size16,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: colorThemes.white,
+    borderRadius: scale(8),
   },
   imageName: {
     flexDirection: 'row',
@@ -43,5 +44,19 @@ export default StyleSheet.create({
   noOfItems: {
     marginLeft: scale(10),
     marginRight: scale(10),
+  },
+  rectButton: {
+    backgroundColor: colorThemes.red,
+    width: scale(70),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  swipeable: {
+    backgroundColor: colorThemes.red,
+    borderRadius: scale(8),
+  },
+  deleteLabel: {
+    color: colorThemes.white,
+    fontSize: sizeValues.fontNormal,
   },
 });

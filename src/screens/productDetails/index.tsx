@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import ContainerView from '../../components/baseComponents/ContainerView';
 import AppText from '../../components/baseComponents/AppText';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -17,6 +17,7 @@ import {FavoriteIcon, HeartOutline} from '../../utilities/iconPaths';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {addToCart} from '../../redux/slicers/shoppingCartSlicer';
 import logger from '../../utilities/logger';
+import {useFocusEffect} from '@react-navigation/native';
 
 type Props = NativeStackScreenProps<
   RootStackParams,
@@ -40,7 +41,15 @@ const ProductionDetails = ({route}: Props) => {
       }
     }
   }, [shoppingCartState]);
-  logger.log('shoppingCartState :', shoppingCartState);
+
+  useFocusEffect(
+    useCallback(() => {
+      const index = shoppingCartState.findIndex(item => item.id === id);
+      if (index !== -1) {
+        setIsAlreadyAdded(true);
+      } else setIsAlreadyAdded(false);
+    }, []),
+  );
 
   const onPress = () => {
     if (!isAreadyAdded) dispatch(addToCart(item));

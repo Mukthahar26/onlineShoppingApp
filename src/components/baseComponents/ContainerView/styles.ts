@@ -8,7 +8,8 @@ const styles = ScaledSheet.create({
     padding: sizeValues.size16,
   },
   container: {
-    padding: sizeValues.size10,
+    flexGrow: 1,
+    padding: sizeValues.size16,
   },
   loadingView: {
     width: '100%',

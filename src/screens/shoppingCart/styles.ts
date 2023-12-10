@@ -4,6 +4,11 @@ import {scale} from 'react-native-size-matters';
 import sizeValues from '../../themes/sizeValues';
 
 const styles = StyleSheet.create({
+  containerStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    marginTop: scale(-70),
+  },
   pricesCard: {
     elevation: 0,
     backgroundColor: colorThemes.lightGray,
@@ -28,6 +33,10 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     color: colorThemes.darkBlue,
     fontWeight: '300',
+    marginTop: scale(15),
+  },
+  emptyStateContainer: {
+    flex: 1,
   },
 });
 

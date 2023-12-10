@@ -8,10 +8,12 @@ import {shoppingCartItem} from '../../redux/slicers/shoppingCartSlicer';
 import UnderLine from '../../components/baseComponents/underLine';
 import styles from './styles';
 import CustomButton from '../../components/blockComponents/customButton';
+import EmptyState from '../../components/blockComponents/emptyState';
 
 const ShoppingCart = () => {
   const shoppingCartState = useAppSelector(state => state.shoppingCartList);
   const [editMode, setEdmitMote] = useState(false);
+  const cartLength = shoppingCartState.length;
   const renderItem = ({item}: {item: shoppingCartItem}) => {
     return <ShoppingCartCard item={item} editMode={editMode} />;
   };
@@ -31,33 +33,46 @@ const ShoppingCart = () => {
 
   return (
     <ContainerView
+      containerStyle={styles.containerStyle}
       isCartIconRequired={false}
-      headerName={`Shopping Cart (${shoppingCartState.length})`}>
-      <FlatList
-        extraData={editMode}
-        keyExtractor={item => item.id.toString()}
-        data={shoppingCartState}
-        renderItem={renderItem}
-        ItemSeparatorComponent={() => <UnderLine style={styles.underline} />}
-      />
-      <AppText onPress={() => setEdmitMote(prev => !prev)} style={styles.edit}>
-        {editMode ? 'Done' : 'Edit'}
-      </AppText>
-      <View style={styles.pricesCard}>
-        {pricesList().map(item => {
-          return (
-            <View style={styles.row}>
-              <AppText>{item.value}</AppText>
-              <AppText>{item.amount}</AppText>
-            </View>
-          );
-        })}
-        <CustomButton
-          style={styles.button}
-          onPress={proceed}
-          label="Proceed to check out"
-        />
-      </View>
+      headerName={`Shopping Cart (${cartLength})`}>
+      {cartLength ? (
+        <>
+          <FlatList
+            extraData={editMode}
+            keyExtractor={item => item.id.toString()}
+            data={shoppingCartState}
+            renderItem={renderItem}
+            ItemSeparatorComponent={() => (
+              <UnderLine style={styles.underline} />
+            )}
+          />
+          <AppText
+            onPress={() => setEdmitMote(prev => !prev)}
+            style={styles.edit}>
+            {editMode ? 'Done' : 'Edit'}
+          </AppText>
+          <View style={styles.pricesCard}>
+            {pricesList().map(item => {
+              return (
+                <View style={styles.row}>
+                  <AppText>{item.value}</AppText>
+                  <AppText>{item.amount}</AppText>
+                </View>
+              );
+            })}
+            <CustomButton
+              style={styles.button}
+              onPress={proceed}
+              label="Proceed to check out"
+            />
+          </View>
+        </>
+      ) : (
+        <View style={styles.emptyStateContainer}>
+          <EmptyState message="Shopping Cart is empty" />
+        </View>
+      )}
     </ContainerView>
   );
 };

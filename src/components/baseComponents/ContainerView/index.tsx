@@ -70,17 +70,13 @@ const ContainerView = ({
           {isScrollRequired ? (
             <FlatList
               data={[{}]}
+              contentContainerStyle={[
+                styles.container,
+                containerStyle,
+                {paddingBottom: isIgnoreBottomBar ? scale(80) : scale(10)},
+              ]}
               showsVerticalScrollIndicator={false}
-              renderItem={() => (
-                <View
-                  style={[
-                    {paddingBottom: isIgnoreBottomBar ? scale(80) : scale(10)},
-                    styles.container,
-                    containerStyle,
-                  ]}>
-                  {children}
-                </View>
-              )}
+              renderItem={() => <View>{children}</View>}
               keyExtractor={(_, index) => index.toString()}
             />
           ) : (
